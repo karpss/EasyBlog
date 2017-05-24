@@ -14,6 +14,14 @@ class MakePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('poster_id')->unsigned()->default(0);
+            $table->foreign('poster_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->string('title')->unique();
+            $table->text('body');
+            $table->string('slug')->unique();
+            $table->boolean('active');
             $table->timestamps();
         });
     }
