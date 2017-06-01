@@ -14,7 +14,7 @@ class Comments extends Model
     }
     public function post()
     {
-        return $this->belongsTo('App/Posts','with_post');
+        return $this->belongsTo('App/Posts','with_posts');
     }
 
 }
