@@ -16,5 +16,16 @@ class PostController extends Controller
         $title = 'New Posts';
         return view ('home')->withPosts($posts)->withTitle($title);
     }
+    public function create(Request $request)
+    {
+     if($request->user()->can_post())
+     {
+         return view ('posts.create');
+     }
+     else
+     {
+         return redirect('/')->withErrors('You have no permission to post');
+     }
+    }
 
 }
